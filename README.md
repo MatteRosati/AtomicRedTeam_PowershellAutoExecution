@@ -79,7 +79,7 @@ git clone https://github.com/redcanaryco/atomic-red-team.git C:\Temp\Mead\atomic
 
 ### 5. Aggiungi lo script PowerShell per l'esecuzione dei test
 
-Scarica o copia uno degli script **`NAME.ps1`**, disponibili nella cartella **`Atomic_ExecutionScripts`** della repository, e salvalo nella stessa cartella dove hai posizionato la repository.
+Scarica o copia uno degli script **`SCRIPTNAME.ps1`**, disponibili nella cartella **`Atomic_ExecutionScripts`** della repository, e salvalo nella stessa cartella dove hai posizionato la repository.
 
 ---
 
@@ -102,7 +102,7 @@ cd "C:\Temp\Mead"
 3. **Esegui lo script**:
 
 ```powershell
-.\NAME.ps1
+.\SCRIPTNAME.ps1
 ```
 
 Lo script avvierà i test in finestre separate di PowerShell, e vedrai un messaggio che indica l'inizio del test e l'orario di avvio.
@@ -127,11 +127,18 @@ $technique = "T1071"  # Cambia la tecnica desiderata
 $testNumbers = 5  # Esegui solo il test 5
 ```
 
-Oppure, per eseguire più test, come il test 1, 2, 3:
+per eseguire invece più test, come il test 1, 2, 3:
 
 ```powershell
 $testNumbers = 1..3  # Esegui i test 1, 2 e 3
 ```
+
+oppure utilizzare la sintassi:
+
+```powershell
+@{ Technique = "Technique"; TestNumber = number }
+```
+
 
 ---
 

@@ -1,9 +1,5 @@
 ##################################################################################################################################################
-# Script utile a lanciare in nuove finestre powershell tutti i test definiti nella parte relativa a "execution" nel documento txt in questo folder;
-# Viene definito all'inizio dello script il percorso standard che andrà a sostituirsi, di volta in volta nei file yaml, a "path to atomic folder".
-# Nella finestra da cui lanciamo lo script viene inserito il numero del test e il timestamp di inizio, in modo che sia possibile mappare correttamente
-# i test effettuati. Ogni finestra powershell che viene aperta ha abilitato il flag "NoExit"; questo flag permette di lanciare i test e lasciare
-# aperte le finestre per una successiva analisi dei risultati dei vari test.
+# Script ".ps" che lancia tutti i test relativi alla parte "execution" del file excel.
 ##################################################################################################################################################
 
 
