@@ -48,7 +48,7 @@ Esegui il comando seguente per installarli:
 Install-Module -Name invoke-atomicredteam, powershell-yaml -Scope CurrentUser
 ```
 
-E verifica l'installazione tramite:
+Per la verifica della corretta installazione di **`Invoke-AtomicRedTeam`** tramite:
 
 ```powershell
 Get-Module -ListAvailable | Where-Object { $_.Name -eq 'Invoke-AtomicRedTeam' }
