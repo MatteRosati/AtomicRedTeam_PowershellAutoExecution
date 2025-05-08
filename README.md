@@ -85,7 +85,7 @@ git clone https://github.com/redcanaryco/atomic-red-team.git C:\Temp\Mead\atomic
 
 ### 5. Aggiungi lo script PowerShell per l'esecuzione dei test
 
-Scarica o copia uno degli script **`SCRIPTNAME.ps1`**, disponibili nella cartella **`Atomic_ExecutionScripts`** della repository, e salvalo nella stessa cartella dove hai posizionato la repository.
+Scarica o copia lo/gli script **`SCRIPTNAME.ps1`**, disponibili nella cartella **`Atomic_ExecutionScripts`** della repository, e salvalo nella stessa cartella dove hai importato la repository **atomic-red-team**.
 
 ---
 
@@ -99,7 +99,7 @@ Una volta configurato tutto, esegui lo script PowerShell per avviare i test.
 
    * Fai clic con il tasto destro sul menu Start, seleziona "Windows PowerShell (Amministratore)".
 
-2. **Naviga alla cartella** dove hai salvato lo script e la repository:
+2. **Naviga alla cartella** dove hai salvato lo script e la repository di atomic-red-team:
 
 ```powershell
 cd "C:\Temp\Mead"
