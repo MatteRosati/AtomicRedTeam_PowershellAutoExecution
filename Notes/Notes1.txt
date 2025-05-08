@@ -1,0 +1,24 @@
+🔧 Alternativa per configurazione temporanea
+Se non vuoi modificarlo permanentemente nel profilo, puoi impostarlo direttamente nella sessione corrente (senza modificare il file di profilo) eseguendo:
+
+powershell
+Copia
+Modifica
+$PSDefaultParameterValues = @{
+   "Invoke-AtomicTest:PathToAtomicsFolder" = "C:\Temp\Mead\atomic-red-team-master\atomics"
+}
+Questo avrà effetto solo nella sessione PowerShell in corso.
+
+In questo modo, ogni volta che trovi:
+
+yaml
+Copia
+Modifica
+"PathToAtomicsFolder\..\ExternalPayloads"
+verrà automaticamente risolto come:
+
+makefile
+Copia
+Modifica
+C:\Temp\Mead\atomic-red-team-master\ExternalPayloads\
+Se hai altri dubbi o se vuoi fare qualche altro test, fammi sapere!

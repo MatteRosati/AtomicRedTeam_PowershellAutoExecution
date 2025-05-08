@@ -1,0 +1,46 @@
+# Definizione del percorso personalizzato per Atomic Red Team
+$AtomicRedTeamPath = "C:\Temp\Mead\atomic-red-team-master"
+$ExternalPayloadsPath = "$AtomicRedTeamPath\ExternalPayloads"
+
+# Funzione per eseguire un test con percorso personalizzato
+function Execute-Test {
+    param (
+        [string]$test,
+        [string]$atomicPath
+    )
+
+    Write-Host "Inizio esecuzione del test $test con percorso personalizzato $atomicPath"
+    
+    # Esegui il test con il percorso personalizzato
+    # Imposta la variabile PSDefaultParameterValues con il percorso personalizzato
+    $PSDefaultParameterValues = @{
+        "Invoke-AtomicTest:PathToAtomicsFolder" = $atomicPath
+    }
+
+    # Esegui il test
+    Invoke-AtomicTest $test
+
+    Write-Host "Fine esecuzione del test $test"
+}
+
+# Definizione della lista dei test
+$tests = @(
+    "T1047.001",  # WMI Reconnaissance Users
+    "T1047.002",  # WMI Reconnaissance Processes
+    "T1047.003",  # WMI Reconnaissance Software
+    "T1047.004",  # WMI Reconnaissance List Remote Services
+    "T1047.005",  # WMI Execute Local Process
+    "T1047.006",  # WMI Execute Remote Process
+    "T1047.007",  # Create a Process using WMI Query and an Encoded Command
+    "T1047.008",  # Create a Process using obfuscated Win32_Process
+    "T1047.009"   # WMI Execute rundll32
+)
+
+# Esegui ogni test in una finestra di PowerShell separata
+foreach ($test in $tests) {
+    # Avvia una nuova finestra di PowerShell per eseguire il test con il percorso personalizzato
+    Start-Process powershell.exe -ArgumentList "-NoExit", "-Command", "& { Execute-Test -test '$test' -atomicPath '$AtomicRedTeamPath' }"
+    Write-Host "Test $test avviato in una nuova finestra con percorso personalizzato."
+}
+
+Write-Host "Tutti i test sono stati lanciati in finestre separate con il percorso personalizzato."
