@@ -119,32 +119,13 @@ Lo script avvierà i test in finestre separate di PowerShell, e vedrai un messag
 
 ### Modificare la tecnica o i numeri dei test:
 
-Per eseguire test diversi, modifica le seguenti variabili nel tuo script PowerShell:
-
-* **\$technique**: Modifica questa variabile per cambiare la tecnica da testare (ad esempio, `T1071` per Application Layer Protocol).
+Per eseguire test diversi diversi da quelli definiti è sufficiente utilizzare la sintassi:
 
 ```powershell
-$technique = "T1071"  # Cambia la tecnica desiderata
+@{ Technique = "Technique"; TestNumber = Number }
 ```
 
-* **\$testNumbers**: Puoi scegliere di eseguire un singolo test, o un intervallo di test. Ad esempio, per eseguire solo il test 5:
-
-```powershell
-$testNumbers = 5  # Esegui solo il test 5
-```
-
-per eseguire invece più test, come il test 1, 2, 3:
-
-```powershell
-$testNumbers = 1..3  # Esegui i test 1, 2 e 3
-```
-
-oppure utilizzare la sintassi:
-
-```powershell
-@{ Technique = "Technique"; TestNumber = number }
-```
-
+Andando a sostituire a **Technique** la tecnica desiderata (**NON rimuovere i doppi apici**) e a **Number** il numero della tecnica.
 
 ---
 
