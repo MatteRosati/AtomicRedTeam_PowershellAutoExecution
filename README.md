@@ -1,6 +1,6 @@
 # Guida per l'esecuzione automatica dei test Atomic - Windows
 
-Questa guida fornisce i passaggi necessari per eseguire automaticamente i test di **Atomic Red Team** su un sistema Windows utilizzando uno script PowerShell. I test vengono eseguiti in finestre separate di PowerShell per garantire che ogni test sia indipendente e non interferisca con gli altri. Inoltre, il flag **"NoExit"** è abilitato per mantenere aperte le finestre PowerShell anche dopo che il test è stato completato, permettendo un'analisi accurata dei risultati.
+Questa guida fornisce i passaggi necessari per eseguire automaticamente i test di **Atomic Red Team** su un sistema Windows utilizzando uno script PowerShell. I test vengono eseguiti in finestre separate (ogni volta viene aperta una nuova finestra di PowerShell) per garantire che ogni test sia indipendente e non interferisca con gli altri. Inoltre, il flag **"NoExit"** è abilitato per mantenere aperte le finestre anche dopo che il test è stato completato, permettendo un'analisi accurata dei risultati.
 
 ---
 
@@ -46,6 +46,12 @@ Esegui il comando seguente per installarli:
 
 ```powershell
 Install-Module -Name invoke-atomicredteam, powershell-yaml -Scope CurrentUser
+```
+
+E verifica l'installazione tramite:
+
+```powershell
+Get-Module -ListAvailable | Where-Object { $_.Name -eq 'Invoke-AtomicRedTeam' }
 ```
 
 Questi moduli ti consentiranno di eseguire i test di Atomic Red Team e di leggere file YAML se necessari.
