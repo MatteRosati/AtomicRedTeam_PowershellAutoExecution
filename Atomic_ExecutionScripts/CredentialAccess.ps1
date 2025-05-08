@@ -1,3 +1,7 @@
+##############################################################################################
+# Script contenente tutti gli atomic tests da eseguire relativi al credential access
+##############################################################################################
+
 # Percorso alla cartella atomics
 $AtomicPath = "C:\Temp\Mead\atomic-red-team-master\atomics"
 
