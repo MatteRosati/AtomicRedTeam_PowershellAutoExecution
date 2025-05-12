@@ -1,0 +1,6 @@
+NOTE:
+
+alcuni test modificano chiavi di registro; per verifiche
+--> occhio alla concorrenza.
+
+LOGGING: configura logging txt.
