@@ -3,7 +3,7 @@
 ##############################################################################################
 
 # Percorso alla cartella atomics
-$AtomicPath = "C:\Temp\Mead\atomic-red-team-master\atomics"
+$AtomicPath = "C:\Temp\Mead\atomic-red-team-master\atomic-red-team-master\atomics"
 
 # Cartella dove salvare i log
 $LogDir = "C:\Temp\Mead\AtomicLogs\PrivilegeEscalation"
