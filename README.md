@@ -78,10 +78,6 @@ Scarica la repository **atomic-red-team** da GitHub:
 
 Alternativamente, puoi clonare la repository tramite Git se preferisci:
 
-```bash
-git clone https://github.com/redcanaryco/atomic-red-team.git C:\Temp\Mead\atomic-red-team-master
-```
-
 ---
 
    > ⚠️ *Se il nome della cartella estratta è diverso (es. `atomic-red-team-main`), **rinominala** in `atomic-red-team-master`, così da essere compatibile con lo script.*
