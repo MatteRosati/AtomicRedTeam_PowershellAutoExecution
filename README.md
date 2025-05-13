@@ -111,7 +111,7 @@ cd "C:\Temp\Mead"
 .\SCRIPTNAME.ps1
 ```
 
-Lo script avvierà i test in finestre separate di PowerShell, e vedrai un messaggio che indica l'inizio del test e l'orario di avvio.
+Lo script avvierà i test Uno alla volta, in finestre di powershell diverse per ognuno. Finito un test, la **finestra su cui è stato lanciato** si metterà in stato di **pause** e attenderà che l'utente prema un tasto qualunque per chiudersi, permettendo di analizzare l'output del test. **Sulla finestra principale**, quella da cui abbiamo lanciato lo script principale, al termine di un test viene richiesta la pressione del tasto **invio** per passare al test successivo.
 
 ---
 
