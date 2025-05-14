@@ -77,7 +77,7 @@ foreach ($test in $testsToRun) {
     $innerCommand = @"
 `$timestamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 `$logPath = '$logFile'
-`$PSDefaultParameterValues = @{ "Invoke-AtomicTest:PathToAtomicsFolder" = '$AtomicPath' }
+`$PSDefaultParameterValues = @{ 'Invoke-AtomicTest:PathToAtomicsFolder' = '$AtomicPath' }
 
 '[$timestamp] Avvio test $testName' | Out-File -FilePath `$logPath -Encoding UTF8
 
@@ -96,6 +96,5 @@ pause
 
     Start-Process powershell.exe -ArgumentList "-NoExit", "-Command", $innerCommand
 
-    # Pausa nella finestra principale (opzionale: puoi anche toglierla)
     Read-Host "Premi INVIO per passare al test successivo"
 }
