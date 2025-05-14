@@ -42,7 +42,7 @@ foreach ($test in $testsToRun) {
 
 try {
     '>> Esecuzione di Invoke-AtomicTest $testName' | Out-File -Append `$logPath
-    Invoke-AtomicTest '$technique' -TestNumbers $testNumber -ExecutionMode Local 2>&1 | Tee-Object -FilePath `$logPath -Append
+    Invoke-AtomicTest '$technique' -TestNumbers $testNumber 2>&1 | Tee-Object -FilePath `$logPath -Append
     '[SUCCESS] Test $testName completato con successo.' | Out-File -Append `$logPath
 } catch {
     '[ERROR] Errore durante il test $testName :' | Out-File -Append `$logPath
