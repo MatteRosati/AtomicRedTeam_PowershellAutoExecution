@@ -87,7 +87,7 @@ try {
     '[SUCCESS] Test $testName completato con successo.' | Out-File -Append `$logPath
 } catch {
     '[ERROR] Errore durante il test $testName :' | Out-File -Append `$logPath
-    \$_ | Out-String | Out-File -Append `$logPath
+    `$_ | Out-String | Out-File -Append `$logPath
 }
 
 'Premere un tasto per chiudere la finestra...' | Out-File -Append `$logPath
