@@ -131,14 +131,16 @@ Andando a sostituire a **Technique** la tecnica desiderata (**NON rimuovere i do
 Ogni test verrà eseguito in una finestra separata di PowerShell. L'output di ciascun test includerà informazioni sull'orario di inizio. Ad esempio, vedrai un messaggio simile a questo nella finestra PowerShell che esegue il test:
 
 ```
-[PS WINDOW] Inizio test T1047-1 alle 2025-05-08 12:30:45
+Executing test: **numero e nome test**
 ```
 
 Inoltre, nella finestra principale vedrai un messaggio che indica l'avvio di ogni test e l'orario di inizio:
 
 ```
-[2025-05-08 12:30:45] Avvio del test T1047-1 in nuova finestra...
+[2025-05-08 12:30:45] Avvio del test T1047-1
 ```
+
+E, al termine dell'esecuzione dell'atomic test, verrà richiesto di premere invio per passare al test successivo.
 
 ---
 
