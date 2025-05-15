@@ -92,9 +92,9 @@ Una volta configurato tutto, esegui lo script PowerShell per avviare i test.
 
 ### Passaggi:
 
-1. **Apri PowerShell come amministratore**:
+1. **Apri PowerShell**:
 
-   * Fai clic con il tasto destro sul menu Start, seleziona "Windows PowerShell (Amministratore)".
+   * Apri una finestra di powershell.
 
 2. **Naviga alla cartella** dove hai salvato lo script e la repository di atomic-red-team:
 
@@ -102,7 +102,19 @@ Una volta configurato tutto, esegui lo script PowerShell per avviare i test.
 cd "C:\Temp\Mead"
 ```
 
-3. **Esegui lo script**:
+3. **Cambia l'execution policy (se necessario)** : Prima di eseguire lo script potrebbe essere necessario modificare la execution policy della macchina; si può fare per il singolo script, utilizzando:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\SCRIPTNAME.ps1
+```
+
+oppure per l'utente:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+4. **Esegui lo script**:
 
 ```powershell
 .\SCRIPTNAME.ps1
