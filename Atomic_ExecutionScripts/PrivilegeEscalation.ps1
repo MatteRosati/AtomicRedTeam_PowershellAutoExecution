@@ -1,17 +1,16 @@
 ##############################################################################################
-# Script contenente tutti gli atomic tests da eseguire relativi al privilege escalations
+# Esecuzione test Atomic di Privilege Escalation con auto-skip dei manual executor
+# e generazione di report CSV finale
 ##############################################################################################
 
-# Percorso alla cartella atomics
+# Configurazioni
 $AtomicPath = "C:\Temp\Mead\atomic-red-team-master\atomic-red-team-master\atomics"
-
-# Cartella dove salvare i log
 $LogDir = "C:\Temp\Mead\AtomicLogs\PrivilegeEscalation"
-if (-not (Test-Path $LogDir)) {
-    New-Item -ItemType Directory -Path $LogDir | Out-Null
-}
+$ReportPath = Join-Path $LogDir "PrivilegeEscalation_Report.csv"
 
-# Lista dei test da eseguire (Tecnica + TestNumber)
+if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir | Out-Null }
+
+# Lista dei test da eseguire
 $testsToRun = @(
     @{ Technique = "T1546.008"; TestNumber = 1 }, @{ Technique = "T1546.008"; TestNumber = 2 }
     @{ Technique = "T1546.010"; TestNumber = 1 }
@@ -56,37 +55,93 @@ $testsToRun = @(
     @{ Technique = "T1547.004"; TestNumber = 1 }, @{ Technique = "T1547.004"; TestNumber = 2 }, @{ Technique = "T1547.004"; TestNumber = 3 }
 )
 
-# Avvio test uno alla volta in nuove finestre con logging e gestione errori
+# Inizializza report finale
+$report = @()
+
+# Carica YAML
+$yamlFiles = Get-ChildItem -Path $AtomicPath -Recurse -Include T*.yaml
+$allTechniques = $yamlFiles | Get-AtomicTechnique
+
 foreach ($test in $testsToRun) {
     $technique = $test.Technique
     $testNumber = $test.TestNumber
     $testName = "$technique-$testNumber"
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $logFile = Join-Path $LogDir "$testName.txt"
-    Write-Host "[$timestamp] Avvio test $testName..." -ForegroundColor Cyan
 
-    $innerCommand = @"
-`$timestamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-`$logPath = '$logFile'
-`$PSDefaultParameterValues = @{ 'Invoke-AtomicTest:PathToAtomicsFolder' = '$AtomicPath' }
+    "===============================" | Out-File -FilePath $logFile -Encoding UTF8
+    "[$timestamp] Avvio test $testName" | Out-File -Append $logFile
+    "" | Out-File -Append $logFile
 
-'[$timestamp] Avvio test $testName' | Out-File -FilePath `$logPath -Encoding UTF8
+    $testStatus = ""
+    $executor = ""
+    $elevationRequired = ""
 
-try {
-    '>> Esecuzione di Invoke-AtomicTest $testName' | Out-File -Append `$logPath
-    Invoke-AtomicTest '$technique' -TestNumbers $testNumber 2>&1 | Tee-Object -FilePath `$logPath -Append
-    '[SUCCESS] Test $testName completato con successo.' | Out-File -Append `$logPath
-} catch {
-    '[ERROR] Errore durante il test $testName :' | Out-File -Append `$logPath
-    `$_ | Out-String | Out-File -Append `$logPath
-}
+    try {
+        $tech = $allTechniques | Where-Object { $_.attack_technique -eq $technique }
+        if (-not $tech) {
+            "[ERRORE] Tecnica $technique non trovata." | Out-File -Append $logFile
+            $testStatus = "TECHNIQUE_NOT_FOUND"
+            continue
+        }
 
-'Premere un tasto per chiudere la finestra...' | Out-File -Append `$logPath
-pause
-"@
+        $atomicTest = $tech.atomic_tests[$testNumber - 1]
+        if (-not $atomicTest) {
+            "[ERRORE] Test numero $testNumber non trovato per $technique." | Out-File -Append $logFile
+            $testStatus = "TEST_NOT_FOUND"
+            continue
+        }
 
-    Start-Process powershell.exe -ArgumentList "-NoExit", "-Command", $innerCommand
+        $executor = $atomicTest.executor.name
+        $elevationRequired = $atomicTest.elevation_required
 
-    # Pausa nella finestra principale per evitare lanci simultanei
+        ">> Executor: $executor" | Out-File -Append $logFile
+        ">> Requires Elevation: $elevationRequired" | Out-File -Append $logFile
+
+        if ($executor -eq "manual") {
+            "[SKIP] Executor 'manual'. Test ignorato." | Out-File -Append $logFile
+            $testStatus = "SKIPPED_MANUAL"
+            continue
+        }
+
+        if ($elevationRequired) {
+            "[AVVISO] Richiesti privilegi elevati!" | Out-File -Append $logFile
+        }
+
+        # Prerequisiti
+        Invoke-AtomicTest $technique -TestNumbers $testNumber -GetPrereqs -PathToAtomicsFolder $AtomicPath 2>&1 | Tee-Object -Append $logFile
+
+        # Esecuzione
+        Invoke-AtomicTest $technique -TestNumbers $testNumber -PathToAtomicsFolder $AtomicPath 2>&1 | Tee-Object -Append $logFile
+
+        # Cleanup
+        Start-Sleep -Seconds 2
+        Invoke-AtomicTest $technique -TestNumbers $testNumber -Cleanup -PathToAtomicsFolder $AtomicPath 2>&1 | Tee-Object -Append $logFile
+
+        "[SUCCESSO] Test $testName completato." | Out-File -Append $logFile
+        $testStatus = "SUCCESS"
+    }
+    catch {
+        "[ERRORE] Durante il test $testName" | Out-File -Append $logFile
+        $_ | Out-String | Out-File -Append $logFile
+        $testStatus = "ERROR"
+    }
+
+    $report += [PSCustomObject]@{
+        Timestamp         = $timestamp
+        Technique         = $technique
+        TestNumber        = $testNumber
+        TestName          = $testName
+        Executor          = $executor
+        RequiresElevation = $elevationRequired
+        Status            = $testStatus
+        LogPath           = $logFile
+    }
+
+    "" | Out-File -Append $logFile
     Read-Host "Premi INVIO per passare al test successivo"
 }
+
+# Salva il report CSV
+$report | Export-Csv -Path $ReportPath -NoTypeInformation -Encoding UTF8
+Write-Host "`n[INFO] Report CSV salvato in: $ReportPath" -ForegroundColor Green
