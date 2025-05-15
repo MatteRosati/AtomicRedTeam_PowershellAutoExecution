@@ -1,5 +1,5 @@
 ##############################################################################################
-# Esecuzione test atomic con skip manual executor e report finale in CSV
+# Esecuzione test Atomic con auto-skip dei manual executor e generazione report CSV finale
 ##############################################################################################
 
 # Configurazioni
@@ -19,6 +19,10 @@ $testsToRun = @(
 # Inizializza lista report
 $report = @()
 
+# Carica tutte le tecniche da file YAML
+$yamlFiles = Get-ChildItem -Path $AtomicPath -Recurse -Include T*.yaml
+$allTechniques = $yamlFiles | Get-AtomicTechnique
+
 foreach ($test in $testsToRun) {
     $technique = $test.Technique
     $testNumber = $test.TestNumber
@@ -26,26 +30,34 @@ foreach ($test in $testsToRun) {
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $logFile = Join-Path $LogDir "$testName.txt"
 
-    "`n==============================" | Out-File -FilePath $logFile -Encoding UTF8
+    "n==============================" | Out-File -FilePath $logFile -Encoding UTF8
     "[$timestamp] Avvio test $testName" | Out-File -Append $logFile
-    "`n" | Out-File -Append $logFile
+    "n" | Out-File -Append $logFile
 
     $testStatus = ""
     $executor = ""
     $elevationRequired = ""
 
     try {
-        # Ottieni il test
-        $tech = Get-AtomicTechnique -Technique $technique
-        $atomicTest = $tech.atomic_tests | Where-Object { $_.auto_generated_guid -match "$technique-$testNumber" }
+        # Trova la tecnica
+        $tech = $allTechniques | Where-Object { $_.attack_technique -eq $technique }
 
-        if ($null -eq $atomicTest) {
-            "[ERRORE] Test $testName non trovato." | Out-File -Append $logFile
-            $testStatus = "NOT_FOUND"
+        if (-not $tech) {
+            "[ERRORE] Tecnica $technique non trovata." | Out-File -Append $logFile
+            $testStatus = "TECHNIQUE_NOT_FOUND"
             continue
         }
 
-        $executor = $atomicTest.executor
+        # Trova il test per numero
+        $atomicTest = $tech.atomic_tests[$testNumber - 1]
+
+        if (-not $atomicTest) {
+            "[ERRORE] Test numero $testNumber non trovato per $technique." | Out-File -Append $logFile
+            $testStatus = "TEST_NOT_FOUND"
+            continue
+        }
+
+        $executor = $atomicTest.executor.name
         $elevationRequired = $atomicTest.elevation_required
 
         ">> Executor: $executor" | Out-File -Append $logFile
@@ -61,10 +73,10 @@ foreach ($test in $testsToRun) {
             "[AVVISO] Il test richiede privilegi elevati!" | Out-File -Append $logFile
         }
 
-        # Prereqs
+        # Prerequisiti
         Invoke-AtomicTest $technique -TestNumbers $testNumber -GetPrereqs -PathToAtomicsFolder $AtomicPath 2>&1 | Tee-Object -Append $logFile
 
-        # Esecuzione
+        # Esecuzione test
         Invoke-AtomicTest $technique -TestNumbers $testNumber -PathToAtomicsFolder $AtomicPath 2>&1 | Tee-Object -Append $logFile
 
         # Cleanup
@@ -80,21 +92,22 @@ foreach ($test in $testsToRun) {
         $testStatus = "ERROR"
     }
 
-    # Aggiunta al report
+    # Salva nel report
     $report += [PSCustomObject]@{
-        Technique        = $technique
-        TestNumber       = $testNumber
-        TestName         = $testName
-        Executor         = $executor
+        Timestamp         = $timestamp
+        Technique         = $technique
+        TestNumber        = $testNumber
+        TestName          = $testName
+        Executor          = $executor
         RequiresElevation = $elevationRequired
-        Status           = $testStatus
-        LogPath          = $logFile
+        Status            = $testStatus
+        LogPath           = $logFile
     }
 
-    "`nPremi INVIO per continuare..." | Out-File -Append $logFile
+    "nPremi INVIO per continuare..." | Out-File -Append $logFile
     Read-Host "Premi INVIO per passare al test successivo"
 }
 
 # Esporta report
 $report | Export-Csv -Path $ReportPath -NoTypeInformation -Encoding UTF8
-Write-Host "`n[INFO] Report CSV salvato in: $ReportPath" -ForegroundColor Green
+Write-Host "n[INFO] Report CSV salvato in: $ReportPath" -ForegroundColor Green
