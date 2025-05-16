@@ -108,12 +108,6 @@ cd "C:\Temp\Mead"
 powershell -ExecutionPolicy Bypass -File .\SCRIPTNAME.ps1
 ```
 
-oppure per l'utente:
-
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
 4. **Esegui lo script**:
 
 ```powershell
