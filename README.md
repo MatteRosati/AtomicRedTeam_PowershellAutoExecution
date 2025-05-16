@@ -1,4 +1,4 @@
-# Guida per l'esecuzione automatica dei test Atomic - Windows
+# Guida per l'esecuzione automatica dei test Atomic - Windows - introduci differenziazione Powershell as admin - powershell
 
 Questa guida fornisce i passaggi necessari per eseguire automaticamente i test di **Atomic Red Team** su un sistema Windows utilizzando uno script PowerShell. I test vengono eseguiti in finestre separate (ogni volta viene aperta una nuova finestra di PowerShell) per garantire che ogni test sia indipendente e non interferisca con gli altri. Inoltre, il flag **"NoExit"** è abilitato per mantenere aperte le finestre anche dopo che il test è stato completato, permettendo un'analisi accurata dei risultati.
 
