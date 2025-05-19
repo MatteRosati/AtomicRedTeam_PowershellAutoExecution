@@ -98,3 +98,52 @@ $testsToRun = @(
 IMPROVEMENTS:
 1) COMPLETATO: fix scripts e inserimento doc per i test manuali.
 2) 
+
+
+
+
+
+
+
+
+
+#####################################################################################################
+# Credential access atomic tests - da effettuare con powershell senza privilegi di amministratore. 
+#####################################################################################################
+$testsToRun = @(
+        @{ Technique = "T1558.004"; TestNumber = 1 } -> Computere deve essere joynato a un dominio. Sembra ok.
+        @{ Technique = "T1003.005"; TestNumber = 1 } -> ok
+        @{ Technique = "T1552.001"; TestNumber = 4 } -> ok
+        @{ Technique = "T1555";     TestNumber = 1 } -> Necessita di word installato
+        @{ Technique = "T1555";     TestNumber = 2 } -> ok
+        @{ Technique = "T1555";     TestNumber = 3 } -> ok
+        @{ Technique = "T1555";     TestNumber = 4 } -> ok
+        @{ Technique = "T1555";     TestNumber = 5 } -> ok
+        @{ Technique = "T1555.003"; TestNumber = 1 } -> ok
+        @{ Technique = "T1555.003"; TestNumber = 7 } -> ok
+        @{ Technique = "T1552.002"; TestNumber = 1 } -> ok
+        @{ Technique = "T1552.002"; TestNumber = 2 } -> Richiesto putty installato (valuta manual perchè non lo installa nei pre req) 
+        @{ Technique = "T1003.006"; TestNumber = 1 } -> Privileges required: domain admin or domain controller account (by default), or any other account with required rights.
+        @{ Technique = "T1187";     TestNumber = 1 } -> ok
+        @{ Technique = "T1056.002"; TestNumber = 2 } -> ok
+        @{ Technique = "T1558.001"; TestNumber = 1 } -> Richiesto che macchina sia a dominio
+        @{ Technique = "T1558.001"; TestNumber = 2 } -> Richiesto che macchina sia a dominio
+        @{ Technique = "T1552.006"; TestNumber = 1 } -> Richiesto che macchina sia a dominio
+        @{ Technique = "T1552.006"; TestNumber = 1 } -> Richiesto che macchina sia a dominio
+        @{ Technique = "T1552.006"; TestNumber = 2 } -> Richiesto che macchina sia a dominio
+        @{ Technique = "T1558.003"; TestNumber = 1 } -> Richiesto che macchina sia a dominio
+        @{ Technique = "T1558.003"; TestNumber = 2 } -> Richiesto che macchina sia a dominio
+        @{ Technique = "T1558.003"; TestNumber = 3 } -> Richiesto che macchina sia a dominio
+        @{ Technique = "T1558.003"; TestNumber = 4 } -> Richiesto che macchina sia a dominio
+        @{ Technique = "T1558.003"; TestNumber = 5 } -> Richiesto che macchina sia a dominio 
+        @{ Technique = "T1110.001"; TestNumber = 1 } -> Exception calling "Bind" with "0" argument(s): "The LDAP server is unavailable."
+        @{ Technique = "T1110.001"; TestNumber = 2 } -> Richiesto che macchina sia a dominio 
+        @{ Technique = "T1110.003"; TestNumber = 1 } -> Richiesto che macchina sia a dominio (?)
+        @{ Technique = "T1110.003"; TestNumber = 2 } -> Richiesto che macchina sia a dominio (?)
+        @{ Technique = "T1110.003"; TestNumber = 3 } -> Richiesto che macchina sia a dominio (?)
+        @{ Technique = "T1552.004"; TestNumber = 1 } -> fix
+        @{ Technique = "T1552.004"; TestNumber = 9 } -> fix
+        @{ Technique = "T1552.004"; TestNumber = 10} -> fix
+        @{ Technique = "T1003.002"; TestNumber = 5 } -> ok
+        @{ Technique = "T1003.002"; TestNumber = 6 } -> ok
+)
