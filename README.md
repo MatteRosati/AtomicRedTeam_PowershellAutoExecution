@@ -1,5 +1,6 @@
 # Guida per l'esecuzione automatica dei test Atomic - Windows - introduci differenziazione Powershell as admin - powershell
 
+**IN UPDATE: manual tests**
 Questa guida fornisce i passaggi necessari per eseguire automaticamente i test di **Atomic Red Team** su un sistema Windows utilizzando uno script PowerShell. I test vengono lanciati dalla finestra di powershell e hanno un tempo di 120 secondi per terminare, diversamente l'arresto viene forzato.
 Per l'inserimento di nuovi test atomic **prestare attenzione alla documentazione degli atomic tests**, che indica in quale ambiente lanciare il test.
 
