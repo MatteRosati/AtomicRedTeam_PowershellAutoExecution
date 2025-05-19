@@ -1,11 +1,11 @@
-##############################################################################################
-# Credential Access tests - da effettuare con powershell senza privilegi di amministratore.
-##############################################################################################
+#####################################################################################################
+# Privilege escalation atomic tests - da effettuare con powershell senza privilegi di amministratore.
+#####################################################################################################
 
 # Configurazioni
 $AtomicPath = "C:\Temp\Mead\atomic-red-team-master\atomic-red-team-master\atomics"
-$LogDir = "C:\Temp\Mead\AtomicLogs\CredentialAccessNotAdmin"
-$ReportPath = Join-Path $LogDir "CredentialAccessNotAdmin_Report.csv"
+$LogDir = "C:\Temp\Mead\AtomicLogs\PrivilegeEscalatiosNotAdmin"
+$ReportPath = Join-Path $LogDir "PrivilegeEscalationNotAdmin_Report.csv"
 
 if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir | Out-Null }
 
