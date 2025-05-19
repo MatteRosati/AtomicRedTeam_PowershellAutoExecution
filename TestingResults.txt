@@ -147,3 +147,46 @@ $testsToRun = @(
         @{ Technique = "T1003.002"; TestNumber = 5 } -> ok
         @{ Technique = "T1003.002"; TestNumber = 6 } -> ok
 )
+
+
+#####################################################################################################
+# Credential access atomic tests - da effettuare con powershell con privilegi di amministratore. 
+#####################################################################################################
+$testsToRun = @(
+        @{ Technique = "T1056.004"; TestNumber = 1 }   -> ok
+        @{ Technique = "T1552.001"; TestNumber = 5 }   -> ok
+        @{ Technique = "T1555.003"; TestNumber = 3 }   -> ok
+        @{ Technique = "T1056.001"; TestNumber = 1 }   -> ok
+        @{ Technique = "T1557.001"; TestNumber = 1 }   -> domain richiesto
+        @{ Technique = "T1003.004"; TestNumber = 1 }   -> ok
+        @{ Technique = "T1003.001"; TestNumber = 1 }   -> ok
+        @{ Technique = "T1003.001"; TestNumber = 2 }   -> ok
+        @{ Technique = "T1003.001"; TestNumber = 3 }   -> ok
+        @{ Technique = "T1003.001"; TestNumber = 4 }   -> ok
+        @{ Technique = "T1003.001"; TestNumber = 6 }   -> Da controllare i path
+        @{ Technique = "T1003.001"; TestNumber = 7 }   -> ok. controllare perchè non da pwd
+        @{ Technique = "T1003.001"; TestNumber = 8 }   -> ok
+        @{ Technique = "T1003.001"; TestNumber = 9 }   -> ok da verificare a dominio
+        @{ Technique = "T1003.001"; TestNumber = 10 }  -> ok da verificare a dominio
+        @{ Technique = "T1003.001"; TestNumber = 11 }  ->
+        @{ Technique = "T1003.001"; TestNumber = 12 }  ->
+        @{ Technique = "T1556.002"; TestNumber = 1 }   ->
+        @{ Technique = "T1003.003"; TestNumber = 1 }   ->
+        @{ Technique = "T1003.003"; TestNumber = 2 }   ->
+        @{ Technique = "T1003.003"; TestNumber = 3 }   ->
+        @{ Technique = "T1003.003"; TestNumber = 4 }   ->
+        @{ Technique = "T1003.003"; TestNumber = 5 }   ->
+        @{ Technique = "T1003.003"; TestNumber = 6 }   ->
+        @{ Technique = "T1003.003"; TestNumber = 7 }   ->
+        @{ Technique = "T1040";     TestNumber = 3 }   ->
+        @{ Technique = "T1040";     TestNumber = 4 }   ->
+        @{ Technique = "T1003";     TestNumber = 1 }   ->
+        @{ Technique = "T1003";     TestNumber = 2 }   ->
+        @{ Technique = "T1003";     TestNumber = 3 }   ->
+        @{ Technique = "T1110.002"; TestNumber = 1 }   ->
+        @{ Technique = "T1552.004"; TestNumber = 1 }   ->
+        @{ Technique = "T1003.002"; TestNumber = 1 }   ->
+        @{ Technique = "T1003.002"; TestNumber = 2 }   ->
+        @{ Technique = "T1003.002"; TestNumber = 3 }   ->
+        @{ Technique = "T1003.002"; TestNumber = 4 }   ->
+)
