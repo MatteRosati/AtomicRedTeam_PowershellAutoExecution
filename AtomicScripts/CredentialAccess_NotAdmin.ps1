@@ -1,53 +1,49 @@
-###################################################################################################
-# Privilege escalation atomic tests - da effettuare con powershell con privilegi di amministratore.
-###################################################################################################
+##############################################################################################
+# Credential Access Atomic Tests - da eseguire con powershell, senza privilegi di admin
+##############################################################################################
 
 # Configurazioni
 $AtomicPath = "C:\Temp\Mead\atomic-red-team-master\atomic-red-team-master\atomics"
-$LogDir = "C:\Temp\Mead\AtomicLogs\PrivilegeEscalationAsAdmin"
-$ReportPath = Join-Path $LogDir "PrivilegeEscalation_Report.csv"
+$LogDir = "C:\Temp\Mead\AtomicLogs\CredentialAccess_NotAdmin"
+$ReportPath = Join-Path $LogDir "CredentialAccessNotAdmin_Report.csv"
 
 if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir | Out-Null }
 
 # Lista test da eseguire (Tecnica + TestNumber)
 $testsToRun = @(
-        @{ Technique = "T1053.005"; TestNumber = 4 }
-        @{ Technique = "T1574.011"; TestNumber = 2 }
-        @{ Technique = "T1546.008"; TestNumber = 1 }
-        @{ Technique = "T1546.008"; TestNumber = 2 }
-        @{ Technique = "T1546.010"; TestNumber = 1 }
-        @{ Technique = "T1546.011"; TestNumber = 1 }
-        @{ Technique = "T1546.011"; TestNumber = 2 }
-        @{ Technique = "T1546.011"; TestNumber = 3 }
-        @{ Technique = "T1548.002"; TestNumber = 6 }
-        @{ Technique = "T1548.002"; TestNumber = 8 }
-        @{ Technique = "T1574.012"; TestNumber = 2 }
-        @{ Technique = "T1546.001"; TestNumber = 1 }
-        @{ Technique = "T1134.002"; TestNumber = 1 }
-        @{ Technique = "T1574.001"; TestNumber = 1 }
-        @{ Technique = "T1078.001"; TestNumber = 1 }
-        @{ Technique = "T1078.001"; TestNumber = 2 }
-        @{ Technique = "T1055.001"; TestNumber = 1 }
-        @{ Technique = "T1546.012"; TestNumber = 1 }
-        @{ Technique = "T1546.012"; TestNumber = 2 }
-        @{ Technique = "T1078.003"; TestNumber = 1 }
-        @{ Technique = "T1546.007"; TestNumber = 1 }
-        @{ Technique = "T1574.009"; TestNumber = 1 }
-        @{ Technique = "T1547.010"; TestNumber = 1 }
-        @{ Technique = "T1547.001"; TestNumber = 2 }
-        @{ Technique = "T1547.001"; TestNumber = 3 }
-        @{ Technique = "T1547.001"; TestNumber = 4 }
-        @{ Technique = "T1547.001"; TestNumber = 5 }
-        @{ Technique = "T1547.001"; TestNumber = 6 }
-        @{ Technique = "T1547.001"; TestNumber = 7 }
-        @{ Technique = "T1053.005"; TestNumber = 1 }
-        @{ Technique = "T1053.005"; TestNumber = 3 }
-        @{ Technique = "T1546.002"; TestNumber = 1 }
-        @{ Technique = "T1547.009"; TestNumber = 2 }
-        @{ Technique = "T1134.001"; TestNumber = 1 }
-        @{ Technique = "T1134.001"; TestNumber = 2 }
-        @{ Technique = "T1543.003"; TestNumber = 2 }
-        @{ Technique = "T1543.003"; TestNumber = 3 }
+        @{ Technique = "T1558.004"; TestNumber = 1 }
+        @{ Technique = "T1003.005"; TestNumber = 1 }
+        @{ Technique = "T1552.001"; TestNumber = 4 }
+        @{ Technique = "T1555";     TestNumber = 1 }
+        @{ Technique = "T1555";     TestNumber = 2 }
+        @{ Technique = "T1555";     TestNumber = 3 }
+        @{ Technique = "T1555";     TestNumber = 4 }
+        @{ Technique = "T1555";     TestNumber = 5 }
+        @{ Technique = "T1555.003"; TestNumber = 1 }
+        @{ Technique = "T1555.003"; TestNumber = 7 }
+        @{ Technique = "T1552.002"; TestNumber = 1 }
+        @{ Technique = "T1552.002"; TestNumber = 2 }
+        @{ Technique = "T1003.006"; TestNumber = 1 }
+        @{ Technique = "T1187";     TestNumber = 1 }
+        @{ Technique = "T1056.002"; TestNumber = 2 }
+        @{ Technique = "T1558.001"; TestNumber = 1 }
+        @{ Technique = "T1558.001"; TestNumber = 2 }
+        @{ Technique = "T1552.006"; TestNumber = 1 }
+        @{ Technique = "T1552.006"; TestNumber = 2 }
+        @{ Technique = "T1558.003"; TestNumber = 1 }
+        @{ Technique = "T1558.003"; TestNumber = 2 }
+        @{ Technique = "T1558.003"; TestNumber = 3 }
+        @{ Technique = "T1558.003"; TestNumber = 4 }
+        @{ Technique = "T1558.003"; TestNumber = 5 }
+        @{ Technique = "T1110.001"; TestNumber = 1 }
+        @{ Technique = "T1110.001"; TestNumber = 2 }
+        @{ Technique = "T1110.003"; TestNumber = 1 }
+        @{ Technique = "T1110.003"; TestNumber = 2 }
+        @{ Technique = "T1110.003"; TestNumber = 3 }
+        @{ Technique = "T1552.004"; TestNumber = 6 }
+        @{ Technique = "T1552.004"; TestNumber = 7 }
+        @{ Technique = "T1003.002"; TestNumber = 5 }
+        @{ Technique = "T1003.002"; TestNumber = 6 }
 )
 
 # Carica tutte le tecniche da file YAML
@@ -99,10 +95,6 @@ foreach ($test in $testsToRun) {
             "[SKIP] Il test ha executor 'manual'. Non eseguito." | Out-File -Append $logFile
             $testStatus = "SKIPPED_MANUAL"
             continue
-        }
-
-        if ($elevationRequired) {
-            "[AVVISO] Il test richiede privilegi elevati!" | Out-File -Append $logFile
         }
 
         Invoke-AtomicTest $technique -TestNumbers $testNumber -GetPrereqs -PathToAtomicsFolder $AtomicPath 2>&1 | Tee-Object -Append $logFile

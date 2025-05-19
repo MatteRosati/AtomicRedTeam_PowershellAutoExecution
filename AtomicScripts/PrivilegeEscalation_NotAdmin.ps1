@@ -4,7 +4,7 @@
 
 # Configurazioni
 $AtomicPath = "C:\Temp\Mead\atomic-red-team-master\atomic-red-team-master\atomics"
-$LogDir = "C:\Temp\Mead\AtomicLogs\PrivilegeEscalatiosNotAdmin"
+$LogDir = "C:\Temp\Mead\AtomicLogs\PrivilegeEscalationNotAdmin"
 $ReportPath = Join-Path $LogDir "PrivilegeEscalationNotAdmin_Report.csv"
 
 if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir | Out-Null }

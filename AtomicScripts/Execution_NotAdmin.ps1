@@ -1,26 +1,24 @@
 ##############################################################################################
-# Esecuzione test Atomic relativi al Lateral Movement con auto-skip dei manual executor
-# e generazione report CSV finale
+# Esecuzione test Atomic con auto-skip dei manual executor e generazione report CSV finale
 ##############################################################################################
 
 # Configurazioni
 $AtomicPath = "C:\Temp\Mead\atomic-red-team-master\atomic-red-team-master\atomics"
-$LogDir = "C:\Temp\Mead\AtomicLogs\LateralMovement"
-$ReportPath = Join-Path $LogDir "LateralMovement_Report.csv"
+$LogDir = "C:\Temp\Mead\AtomicLogs\Execution_NotAdmin"
+$ReportPath = Join-Path $LogDir "ExecutionNotAdmin_Report.csv"
 
 if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir | Out-Null }
 
 # Lista test da eseguire
 $testsToRun = @(
-    @{ Technique = "T1021.003"; TestNumber = 1 }
-    @{ Technique = "T1550.002"; TestNumber = 1 }, @{ Technique = "T1550.002"; TestNumber = 2 }
-    @{ Technique = "T1550.003"; TestNumber = 1 }, @{ Technique = "T1550.003"; TestNumber = 2 }
-    @{ Technique = "T1563.002"; TestNumber = 1 }
-    @{ Technique = "T1021.001"; TestNumber = 1 }, @{ Technique = "T1021.001"; TestNumber = 2 }, @{ Technique = "T1021.001"; TestNumber = 3 }
-    @{ Technique = "T1091";     TestNumber = 1 }
-    @{ Technique = "T1021.002"; TestNumber = 1 }, @{ Technique = "T1021.002"; TestNumber = 2 }, @{ Technique = "T1021.002"; TestNumber = 3 }, @{ Technique = "T1021.002"; TestNumber = 4 }
-    @{ Technique = "T1072";     TestNumber = 1 }
-    @{ Technique = "T1021.006"; TestNumber = 1 }, @{ Technique = "T1021.006"; TestNumber = 2 }, @{ Technique = "T1021.006"; TestNumber = 3 }
+        @{ Technique = "T1047"; TestNumber = 1 }
+        @{ Technique = "T1047"; TestNumber = 2 }
+        @{ Technique = "T1047"; TestNumber = 3 }
+        @{ Technique = "T1047"; TestNumber = 4 }
+        @{ Technique = "T1047"; TestNumber = 5 }
+        @{ Technique = "T1047"; TestNumber = 6 }
+        @{ Technique = "T1047"; TestNumber = 7 }
+        @{ Technique = "T1047"; TestNumber = 9 }
 )
 
 # Inizializza lista report
@@ -37,15 +35,16 @@ foreach ($test in $testsToRun) {
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $logFile = Join-Path $LogDir "$testName.txt"
 
-    "`n==============================" | Out-File -FilePath $logFile -Encoding UTF8
+    "n==============================" | Out-File -FilePath $logFile -Encoding UTF8
     "[$timestamp] Avvio test $testName" | Out-File -Append $logFile
-    "`n" | Out-File -Append $logFile
+    "n" | Out-File -Append $logFile
 
     $testStatus = ""
     $executor = ""
     $elevationRequired = ""
 
     try {
+        # Trova la tecnica
         $tech = $allTechniques | Where-Object { $_.attack_technique -eq $technique }
 
         if (-not $tech) {
@@ -54,6 +53,7 @@ foreach ($test in $testsToRun) {
             continue
         }
 
+        # Trova il test per numero
         $atomicTest = $tech.atomic_tests[$testNumber - 1]
 
         if (-not $atomicTest) {
@@ -78,9 +78,13 @@ foreach ($test in $testsToRun) {
             "[AVVISO] Il test richiede privilegi elevati!" | Out-File -Append $logFile
         }
 
+        # Prerequisiti
         Invoke-AtomicTest $technique -TestNumbers $testNumber -GetPrereqs -PathToAtomicsFolder $AtomicPath 2>&1 | Tee-Object -Append $logFile
+
+        # Esecuzione test
         Invoke-AtomicTest $technique -TestNumbers $testNumber -PathToAtomicsFolder $AtomicPath 2>&1 | Tee-Object -Append $logFile
 
+        # Cleanup
         Start-Sleep -Seconds 2
         Invoke-AtomicTest $technique -TestNumbers $testNumber -Cleanup -PathToAtomicsFolder $AtomicPath 2>&1 | Tee-Object -Append $logFile
 
@@ -105,10 +109,10 @@ foreach ($test in $testsToRun) {
         LogPath           = $logFile
     }
 
-    "`nPremi INVIO per continuare..." | Out-File -Append $logFile
+    "nPremi INVIO per continuare..." | Out-File -Append $logFile
     Read-Host "Premi INVIO per passare al test successivo"
 }
 
 # Esporta report
 $report | Export-Csv -Path $ReportPath -NoTypeInformation -Encoding UTF8
-Write-Host "`n[INFO] Report CSV salvato in: $ReportPath" -ForegroundColor Green
+Write-Host "n[INFO] Report CSV salvato in: $ReportPath" -ForegroundColor Green

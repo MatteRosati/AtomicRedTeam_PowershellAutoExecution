@@ -1,4 +1,4 @@
-NOTE TESTING
+TESTING NOTES
 
 #####################################################################################################
 # Privilege escalation atomic tests - da effettuare con powershell senza privilegi di amministratore.
@@ -87,5 +87,8 @@ $testsToRun = @(
 
 
 
-        @{ Technique = "T1547.005"; TestNumber = 1 } --> MANUALE (register key)
-        @{ Technique = "T1546.003"; TestNumber = 1 } --> ?????? (manuale)
+#####################################################################################################
+# Privilege escalation atomic tests - Da lanciare manualmente
+#####################################################################################################
+        @{ Technique = "T1547.005"; TestNumber = 1 }
+        @{ Technique = "T1546.003"; TestNumber = 1 } 
