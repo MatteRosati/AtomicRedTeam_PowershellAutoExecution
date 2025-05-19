@@ -94,7 +94,7 @@ Una volta configurato tutto, esegui lo script PowerShell per avviare i test.
 
 1. **Apri PowerShell**:
 
-   * Apri una finestra di powershell.
+   * Apri una finestra di powershell o powershell come amministratore se richiesto (powershell con privilegi se AdminRequired, senza privilegi se NotAdmin).
 
 2. **Naviga alla cartella** dove hai salvato lo script e la repository di atomic-red-team:
 
@@ -107,16 +107,6 @@ cd "C:\Temp\Mead"
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\SCRIPTNAME.ps1
 ```
-
-4. **Esegui lo script**:
-
-```powershell
-.\SCRIPTNAME.ps1
-```
-
-Lo script avvierà i test Uno alla volta, in finestre di powershell diverse per ognuno. Finito un test, la **finestra su cui è stato lanciato** si metterà in stato di **pause** e attenderà che l'utente prema un tasto qualunque per chiudersi, permettendo di analizzare l'output del test. **Sulla finestra principale**, quella da cui abbiamo lanciato lo script principale, al termine di un test viene richiesta la pressione del tasto **invio** per passare al test successivo.
-
----
 
 ## Personalizzazione dei test
 
@@ -134,13 +124,7 @@ Andando a sostituire a **Technique** la tecnica desiderata (**NON rimuovere i do
 
 ## Visualizzazione dei Risultati
 
-Ogni test verrà eseguito in una finestra separata di PowerShell. L'output di ciascun test includerà informazioni sull'orario di inizio. Ad esempio, vedrai un messaggio simile a questo nella finestra PowerShell che esegue il test:
-
-```
-Executing test: **numero e nome test**
-```
-
-Inoltre, nella finestra principale vedrai un messaggio che indica l'avvio di ogni test e l'orario di inizio:
+L'output di ciascun test includerà informazioni sull'orario di inizio. Nella finestra principale vedrai un messaggio che indica l'avvio di ogni test e l'orario di inizio:
 
 ```
 [2025-05-08 12:30:45] Avvio del test T1047-1
@@ -150,6 +134,3 @@ E, al termine dell'esecuzione dell'atomic test, verrà richiesto di premere invi
 
 ---
 
-## Interruzione dei test
-
-Se desideri interrompere un test, puoi farlo manualmente dalla finestra PowerShell che esegue il test specifico. Poiché ogni test viene eseguito in una finestra separata, l'interruzione di un test non influenzerà gli altri test.

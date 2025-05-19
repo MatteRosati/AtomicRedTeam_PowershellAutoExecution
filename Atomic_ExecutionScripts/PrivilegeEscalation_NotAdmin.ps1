@@ -11,15 +11,15 @@ if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir | Out
 
 # Lista test da eseguire (Tecnica + TestNumber)
 $testsToRun = @(
-        @{ Technique = "T1055.004"; TestNumber = 1 }
-        @{ Technique = "T1053.002"; TestNumber = 1 }
-        @{ Technique = "T1548.002"; TestNumber = 1 }
-        @{ Technique = "T1548.002"; TestNumber = 2 }
-        @{ Technique = "T1548.002"; TestNumber = 3 }
-        @{ Technique = "T1548.002"; TestNumber = 4 }
-        @{ Technique = "T1548.002"; TestNumber = 5 }
-        @{ Technique = "T1548.002"; TestNumber = 7 }
-        @{ Technique = "T1548.002"; TestNumber = 9 }
+        @{ Technique = "T1055.004"; TestNumber = 1 } 
+        @{ Technique = "T1053.002"; TestNumber = 1 } 
+        @{ Technique = "T1548.002"; TestNumber = 1 } 
+        @{ Technique = "T1548.002"; TestNumber = 2 } 
+        @{ Technique = "T1548.002"; TestNumber = 3 } 
+        @{ Technique = "T1548.002"; TestNumber = 4 } 
+        @{ Technique = "T1548.002"; TestNumber = 5 } 
+        @{ Technique = "T1548.002"; TestNumber = 7 } 
+        @{ Technique = "T1548.002"; TestNumber = 9 } 
         @{ Technique = "T1548.002"; TestNumber = 10 }
         @{ Technique = "T1548.002"; TestNumber = 11 }
         @{ Technique = "T1548.002"; TestNumber = 12 }
@@ -28,29 +28,25 @@ $testsToRun = @(
         @{ Technique = "T1548.002"; TestNumber = 15 }
         @{ Technique = "T1548.002"; TestNumber = 16 }
         @{ Technique = "T1548.002"; TestNumber = 17 }
-        @{ Technique = "T1574.012"; TestNumber = 1 }
-        @{ Technique = "T1574.012"; TestNumber = 3 }
-        @{ Technique = "T1574.001"; TestNumber = 4 }
-        @{ Technique = "T1037.001"; TestNumber = 1 }
-        @{ Technique = "T1134.004"; TestNumber = 1 }
-        @{ Technique = "T1134.004"; TestNumber = 2 }
-        @{ Technique = "T1134.004"; TestNumber = 3 }
-        @{ Technique = "T1134.004"; TestNumber = 4 }
-        @{ Technique = "T1134.004"; TestNumber = 5 }
-        @{ Technique = "T1546.013"; TestNumber = 1 }
-        @{ Technique = "T1055.012"; TestNumber = 1 }
-        @{ Technique = "T1055.012"; TestNumber = 2 }
-        @{ Technique = "T1055";     TestNumber = 1 }
-        @{ Technique = "T1055";     TestNumber = 2 }
-        @{ Technique = "T1547.001"; TestNumber = 1 }
-        @{ Technique = "T1053.005"; TestNumber = 2 }
-        @{ Technique = "T1053.005"; TestNumber = 4 }
-        @{ Technique = "T1574.011"; TestNumber = 1 }
-        @{ Technique = "T1574.011"; TestNumber = 2 }
-        @{ Technique = "T1547.009"; TestNumber = 1 }
-        @{ Technique = "T1547.004"; TestNumber = 1 }
-        @{ Technique = "T1547.004"; TestNumber = 2 }
-        @{ Technique = "T1547.004"; TestNumber = 3 }
+        @{ Technique = "T1574.012"; TestNumber = 1 } 
+        @{ Technique = "T1574.012"; TestNumber = 3 } 
+        @{ Technique = "T1037.001"; TestNumber = 1 } 
+        @{ Technique = "T1134.004"; TestNumber = 1 } 
+        @{ Technique = "T1134.004"; TestNumber = 2 } 
+        @{ Technique = "T1134.004"; TestNumber = 3 } 
+        @{ Technique = "T1134.004"; TestNumber = 4 } 
+        @{ Technique = "T1134.004"; TestNumber = 5 } 
+        @{ Technique = "T1546.013"; TestNumber = 1 } 
+        @{ Technique = "T1055.012"; TestNumber = 1 } 
+        @{ Technique = "T1055.012"; TestNumber = 2 } 
+        @{ Technique = "T1055";     TestNumber = 1 } 
+        @{ Technique = "T1055";     TestNumber = 2 } 
+        @{ Technique = "T1547.001"; TestNumber = 1 } 
+        @{ Technique = "T1053.005"; TestNumber = 2 } 
+        @{ Technique = "T1574.011"; TestNumber = 1 } 
+        @{ Technique = "T1547.009"; TestNumber = 1 } 
+        @{ Technique = "T1547.004"; TestNumber = 1 } 
+        @{ Technique = "T1547.004"; TestNumber = 2 } 
 )
 
 # Carica tutte le tecniche da file YAML

@@ -11,6 +11,8 @@ if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Path $LogDir | Out
 
 # Lista test da eseguire (Tecnica + TestNumber)
 $testsToRun = @(
+        @{ Technique = "T1053.005"; TestNumber = 4 }
+        @{ Technique = "T1574.011"; TestNumber = 2 }
         @{ Technique = "T1546.008"; TestNumber = 1 }
         @{ Technique = "T1546.008"; TestNumber = 2 }
         @{ Technique = "T1546.010"; TestNumber = 1 }
@@ -41,12 +43,9 @@ $testsToRun = @(
         @{ Technique = "T1053.005"; TestNumber = 1 }
         @{ Technique = "T1053.005"; TestNumber = 3 }
         @{ Technique = "T1546.002"; TestNumber = 1 }
-        @{ Technique = "T1547.005"; TestNumber = 1 }
         @{ Technique = "T1547.009"; TestNumber = 2 }
         @{ Technique = "T1134.001"; TestNumber = 1 }
         @{ Technique = "T1134.001"; TestNumber = 2 }
-        @{ Technique = "T1546.003"; TestNumber = 1 }
-        @{ Technique = "T1543.003"; TestNumber = 1 }
         @{ Technique = "T1543.003"; TestNumber = 2 }
         @{ Technique = "T1543.003"; TestNumber = 3 }
 )
