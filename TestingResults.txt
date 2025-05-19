@@ -92,3 +92,9 @@ $testsToRun = @(
 #####################################################################################################
         @{ Technique = "T1547.005"; TestNumber = 1 }
         @{ Technique = "T1546.003"; TestNumber = 1 } 
+
+
+
+IMPROVEMENTS:
+1) COMPLETATO: fix scripts e inserimento doc per i test manuali.
+2) 
