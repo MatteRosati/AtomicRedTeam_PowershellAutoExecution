@@ -76,8 +76,6 @@ Scarica la repository **atomic-red-team** da GitHub:
 2. Estrai il contenuto del file ZIP nella cartella: **C:\Temp\Mead** 
 3. Verifica: dopo aver estratto la zip, dovresti trovare nella cartella il contenuto: **C:\Temp\Mead\atomic-red-team-master**.
 
----
-
    > ⚠️ *Se il nome della cartella estratta è diverso (es. `atomic-red-team-main`), **rinominala** in `atomic-red-team-master`, così da essere compatibile con lo script.*
 
 ### 5. Aggiungi lo script PowerShell per l'esecuzione dei test
