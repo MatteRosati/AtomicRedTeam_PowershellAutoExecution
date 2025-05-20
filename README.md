@@ -18,8 +18,6 @@ Per l'inserimento di nuovi test atomic **prestare attenzione alla documentazione
 2. [Esegui lo script PowerShell](#esegui-lo-script-powershell)
 3. [Personalizzazione dei test](#personalizzazione-dei-test)
 4. [Visualizzazione dei Risultati](#visualizzazione-dei-risultati)
-5. [Opzioni avanzate](#opzioni-avanzate)
-6. [Interruzione dei test](#interruzione-dei-test)
 
 ---
 
