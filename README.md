@@ -1,7 +1,15 @@
 # Guida per l'esecuzione automatica dei test Atomic per Windows
 
-Questa guida fornisce i passaggi necessari per eseguire automaticamente i test di **Atomic Red Team**, su un sistema Windows, utilizzando script PowerShell. I test vengono lanciati dalla finestra di powershell e hanno un tempo di 120 secondi per terminare, diversamente l'arresto viene forzato (opzione modificabile, attualmente impostata ai valori di default di Invoke Atomic Red Team).
-Per l'inserimento di nuovi test atomic **prestare attenzione alla documentazione degli atomic tests**, che indica in quale ambiente lanciare il test (es. Run with command_prompt! Elevation Required (e.g. root or admin), Run with command_prompt!, Run with PowerShell! Elevation Required (e.g. root or admin), Run with PowerShell!)
+Questa guida descrive i passaggi necessari per eseguire automaticamente i test di **Atomic Red Team** su un sistema Windows, utilizzando script PowerShell. I test vengono avviati da una finestra PowerShell e hanno un tempo massimo di esecuzione di 120 secondi; trascorso questo limite, l'arresto del test viene forzato. Questo timeout è configurabile, ma attualmente è impostato sui valori predefiniti del comando `Invoke-AtomicTest`.
+
+Quando si aggiungono nuovi test atomic, è fondamentale consultare attentamente la **documentazione ufficiale dei test**, che specifica i requisiti e l’ambiente di esecuzione. Ad esempio:
+
+* *Run with command\_prompt! Elevation Required (e.g. root or admin)*
+* *Run with command\_prompt!*
+* *Run with PowerShell! Elevation Required (e.g. root or admin)*
+* *Run with PowerShell!*
+
+Assicurarsi sempre che l'ambiente in cui viene eseguito il test sia conforme a quanto indicato per garantire risultati corretti e sicuri.
 
 ---
 
