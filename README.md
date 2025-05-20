@@ -33,8 +33,6 @@ $PSVersionTable.PSVersion
 
 Se la versione è inferiore a 5.x, dovrai aggiornare PowerShell. Puoi scaricarlo dal [sito ufficiale Microsoft](https://docs.microsoft.com/en-us/powershell/scripting/learn/installation).
 
----
-
 ### 2. Installazione dei moduli necessari
 
 Lo script richiede i seguenti moduli PowerShell:
@@ -56,8 +54,6 @@ Get-Module -ListAvailable | Where-Object { $_.Name -eq 'Invoke-AtomicRedTeam' }
 
 Questi moduli ti consentiranno di eseguire i test di Atomic Red Team e di leggere file YAML se necessari.
 
----
-
 ### 3. Creazione della cartella di destinazione
 
 Per organizzare correttamente il materiale, crea una cartella di destinazione dove memorizzare la repository di Atomic Red Team. Esegui il comando:
@@ -65,8 +61,6 @@ Per organizzare correttamente il materiale, crea una cartella di destinazione do
 ```powershell
 New-Item -Path "C:\Temp\Mead" -ItemType Directory
 ```
-
----
 
 ### 4. Scarica e configura la repository Atomic Red Team
 
