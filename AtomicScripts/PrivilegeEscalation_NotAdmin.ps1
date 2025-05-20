@@ -29,7 +29,8 @@ $testsToRun = @(
         @{ Technique = "T1548.002"; TestNumber = 16 }
         @{ Technique = "T1548.002"; TestNumber = 17 }
         @{ Technique = "T1574.012"; TestNumber = 1 } 
-        @{ Technique = "T1574.012"; TestNumber = 3 } 
+        @{ Technique = "T1574.012"; TestNumber = 3 }
+        @{ Technique = "T1574.001"; TestNumber = 4 } 
         @{ Technique = "T1037.001"; TestNumber = 1 } 
         @{ Technique = "T1134.004"; TestNumber = 1 } 
         @{ Technique = "T1134.004"; TestNumber = 2 } 
