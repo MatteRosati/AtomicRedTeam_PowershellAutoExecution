@@ -107,6 +107,7 @@ cd "C:\Temp\Mead"
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\SCRIPTNAME.ps1
 ```
+---
 
 ## Personalizzazione dei test
 
