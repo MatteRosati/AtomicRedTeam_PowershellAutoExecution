@@ -253,8 +253,3 @@ $testsToRun = @(
         @{ Technique = "T1021.002"; TestNumber = 2 } -> ok
         @{ Technique = "T1021.006"; TestNumber = 2 } -> ok
 )
-
-
-
-IMPROVEMENTS:
-1) 
