@@ -1,5 +1,5 @@
 ##############################################################################################
-# Esecuzione test Atomic con auto-skip dei manual executor e generazione report CSV finale
+# Execution atomic tests - da effettuare con powershell con privilegi di amministratore.
 ##############################################################################################
 
 # Configurazioni

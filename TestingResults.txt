@@ -23,6 +23,7 @@ $testsToRun = @(
         @{ Technique = "T1548.002"; TestNumber = 17 } -> ok 
         @{ Technique = "T1574.012"; TestNumber = 1 } -> ok
         @{ Technique = "T1574.012"; TestNumber = 3 } -> ok
+        @{ Technique = "T1574.001"; TestNumber = 4 } -> ok, updated
         @{ Technique = "T1037.001"; TestNumber = 1 } -> ok
         @{ Technique = "T1134.004"; TestNumber = 1 } -> ok - av fa il suo lavoro
         @{ Technique = "T1134.004"; TestNumber = 2 } -> ok (richiede installazione)
@@ -41,6 +42,10 @@ $testsToRun = @(
         @{ Technique = "T1547.004"; TestNumber = 1 } -> ok
         @{ Technique = "T1547.004"; TestNumber = 2 } -> ok
 )
+
+
+
+
 
 #####################################################################################################
 # Privilege escalation atomic tests - da effettuare con powershell senza privilegi di amministratore.
@@ -63,47 +68,42 @@ $testsToRun = @(
         @{ Technique = "T1078.001"; TestNumber = 1 } -> ok
         @{ Technique = "T1078.001"; TestNumber = 2 } -> ok 
         @{ Technique = "T1055.001"; TestNumber = 1 } -> ok
-        @{ Technique = "T1546.012"; TestNumber = 1 } -> 
-        @{ Technique = "T1546.012"; TestNumber = 2 } ->
-        @{ Technique = "T1078.003"; TestNumber = 1 } ->
-        @{ Technique = "T1546.007"; TestNumber = 1 } ->
-        @{ Technique = "T1574.009"; TestNumber = 1 } ->
-        @{ Technique = "T1547.010"; TestNumber = 1 } ->
-        @{ Technique = "T1547.001"; TestNumber = 2 } ->
-        @{ Technique = "T1547.001"; TestNumber = 3 }
-        @{ Technique = "T1547.001"; TestNumber = 4 }
-        @{ Technique = "T1547.001"; TestNumber = 5 }
-        @{ Technique = "T1547.001"; TestNumber = 6 }
-        @{ Technique = "T1547.001"; TestNumber = 7 }
-        @{ Technique = "T1053.005"; TestNumber = 1 }
-        @{ Technique = "T1053.005"; TestNumber = 3 }
-        @{ Technique = "T1546.002"; TestNumber = 1 }
-        @{ Technique = "T1547.009"; TestNumber = 2 }
-        @{ Technique = "T1134.001"; TestNumber = 1 }
-        @{ Technique = "T1134.001"; TestNumber = 2 }
-        @{ Technique = "T1543.003"; TestNumber = 2 }
-        @{ Technique = "T1543.003"; TestNumber = 3 }
+        @{ Technique = "T1546.012"; TestNumber = 1 } -> ok 
+        @{ Technique = "T1546.012"; TestNumber = 2 } -> ok
+        @{ Technique = "T1078.003"; TestNumber = 1 } -> ok
+        @{ Technique = "T1546.007"; TestNumber = 1 } -> ok
+        @{ Technique = "T1574.009"; TestNumber = 1 } -> ok
+        @{ Technique = "T1547.010"; TestNumber = 1 } -> ok
+        @{ Technique = "T1547.001"; TestNumber = 2 } -> ok
+        @{ Technique = "T1547.001"; TestNumber = 3 } -> ok
+        @{ Technique = "T1547.001"; TestNumber = 4 } -> ok
+        @{ Technique = "T1547.001"; TestNumber = 5 } -> ok
+        @{ Technique = "T1547.001"; TestNumber = 6 } -> ok
+        @{ Technique = "T1547.001"; TestNumber = 7 } -> ok
+        @{ Technique = "T1053.005"; TestNumber = 1 } -> ok
+        @{ Technique = "T1053.005"; TestNumber = 3 } -> ok
+        @{ Technique = "T1546.002"; TestNumber = 1 } -> ok
+        @{ Technique = "T1547.009"; TestNumber = 2 } -> ok
+        @{ Technique = "T1134.001"; TestNumber = 1 } -> ok
+        @{ Technique = "T1134.001"; TestNumber = 2 } -> ok
+        @{ Technique = "T1543.003"; TestNumber = 2 } -> ok
+        @{ Technique = "T1543.003"; TestNumber = 3 } -> ok
 )
+
 
 
 
 #####################################################################################################
 # Privilege escalation atomic tests - Da lanciare manualmente
 #####################################################################################################
-        @{ Technique = "T1547.005"; TestNumber = 1 }
-        @{ Technique = "T1546.003"; TestNumber = 1 } 
+        @{ Technique = "T1547.005"; TestNumber = 1 } -> ok
+        @{ Technique = "T1546.003"; TestNumber = 1 } -> ok
 
 
 
 IMPROVEMENTS:
 1) COMPLETATO: fix scripts e inserimento doc per i test manuali.
-2) 
-
-
-
-
-
-
+2) funzionante, aggiornato uno script, nella repo github era in una posizione diversa: 1574.001-4 (ora), 1574.002-1 (prima)
 
 
 
@@ -147,6 +147,8 @@ $testsToRun = @(
         @{ Technique = "T1003.002"; TestNumber = 5 } -> ok
         @{ Technique = "T1003.002"; TestNumber = 6 } -> ok
 )
+
+
 
 
 #####################################################################################################
@@ -193,43 +195,28 @@ $testsToRun = @(
 
 
 
-IMPROVEMENTS:
-
-
-
 
 #####################################################################################################
-# Execution atomic tests - da effettuare con powershell con privilegi di amministratore. 
+# Execution atomic tests - da effettuare con powershell senza privilegi di amministratore. 
 #####################################################################################################
 $testsToRun = @(
-        @{ Technique = "T1047"; TestNumber = 1 }
-        @{ Technique = "T1047"; TestNumber = 2 }
-        @{ Technique = "T1047"; TestNumber = 3 }
-        @{ Technique = "T1047"; TestNumber = 4 }
-        @{ Technique = "T1047"; TestNumber = 5 }
-        @{ Technique = "T1047"; TestNumber = 6 }
-        @{ Technique = "T1047"; TestNumber = 7 }
-        @{ Technique = "T1047"; TestNumber = 9 }
+        @{ Technique = "T1047"; TestNumber = 1 } -> ok
+        @{ Technique = "T1047"; TestNumber = 2 } -> ok
+        @{ Technique = "T1047"; TestNumber = 3 } -> ok
+        @{ Technique = "T1047"; TestNumber = 4 } -> ok
+        @{ Technique = "T1047"; TestNumber = 5 } -> ok
+        @{ Technique = "T1047"; TestNumber = 6 } -> ok
+        @{ Technique = "T1047"; TestNumber = 7 } -> ok
+        @{ Technique = "T1047"; TestNumber = 9 } -> ok
 )
 
 
 
 
-IMPROVEMENTS:
-1) 
-
-
-
 #####################################################################################################
 # Execution atomic tests - da effettuare con powershell con privilegi di amministratore. 
 #####################################################################################################
-@{ Technique = "T1047"; TestNumber = 8 }
-
-
-
-IMPROVEMENTS:
-1) 
-
+@{ Technique = "T1047"; TestNumber = 8 } -> ok
 
 
 
@@ -238,22 +225,17 @@ IMPROVEMENTS:
 # Lateral Movement Atomic Tests - da eseguire con powershell, con privilegi di admin
 ##############################################################################################
 $testsToRun = @(
-        @{ Technique = "T1550.003"; TestNumber = 2 }
-        @{ Technique = "T1563.002"; TestNumber = 1 }
-        @{ Technique = "T1021.001"; TestNumber = 2 }
-        @{ Technique = "T1021.001"; TestNumber = 3 }
-        @{ Technique = "T1021.002"; TestNumber = 3 }
-        @{ Technique = "T1021.002"; TestNumber = 4 }
-        @{ Technique = "T1072"; TestNumber = 1 }
-        @{ Technique = "T1021.006"; TestNumber = 1 }
-        @{ Technique = "T1021.006"; TestNumber = 3 }
+        @{ Technique = "T1550.003"; TestNumber = 2 } -> ok
+        @{ Technique = "T1563.002"; TestNumber = 1 } -> ok
+        @{ Technique = "T1021.001"; TestNumber = 2 } -> ok
+        @{ Technique = "T1021.001"; TestNumber = 3 } -> ok
+        @{ Technique = "T1021.002"; TestNumber = 3 } -> ok
+        @{ Technique = "T1021.002"; TestNumber = 4 } -> ok
+        @{ Technique = "T1072";     TestNumber = 1 } -> ok (vedi come manuale)
+        @{ Technique = "T1021.006"; TestNumber = 1 } -> ok
+        @{ Technique = "T1021.006"; TestNumber = 3 } -> ok (vedi come manuale)
 )
 
-
-
-
-IMPROVEMENTS:
-1) 
 
 
 
@@ -261,15 +243,15 @@ IMPROVEMENTS:
 # Lateral Movement Atomic Tests - da eseguire con powershell, senza privilegi di admin
 ##############################################################################################
 $testsToRun = @(
-        @{ Technique = "T1021.003"; TestNumber = 1 }
-        @{ Technique = "T1550.002"; TestNumber = 1 }
-        @{ Technique = "T1550.002"; TestNumber = 2 }
-        @{ Technique = "T1550.003"; TestNumber = 1 }
-        @{ Technique = "T1021.001"; TestNumber = 1 }
-        @{ Technique = "T1091"; TestNumber = 1 }
-        @{ Technique = "T1021.002"; TestNumber = 1 }
-        @{ Technique = "T1021.002"; TestNumber = 2 }
-        @{ Technique = "T1021.006"; TestNumber = 2 }
+        @{ Technique = "T1021.003"; TestNumber = 1 } -> ok
+        @{ Technique = "T1550.002"; TestNumber = 1 } -> ok
+        @{ Technique = "T1550.002"; TestNumber = 2 } -> ok
+        @{ Technique = "T1550.003"; TestNumber = 1 } -> ok
+        @{ Technique = "T1021.001"; TestNumber = 1 } -> ok
+        @{ Technique = "T1091";     TestNumber = 1 } -> ok
+        @{ Technique = "T1021.002"; TestNumber = 1 } -> ok
+        @{ Technique = "T1021.002"; TestNumber = 2 } -> ok
+        @{ Technique = "T1021.006"; TestNumber = 2 } -> ok
 )
 
 
